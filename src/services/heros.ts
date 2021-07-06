@@ -1,11 +1,11 @@
 import superhero from "../cache/superhero"
+import { Exeption } from "../exeptions/Exeption"
 import { escapeRegExp } from "../utils/escapeRegExp"
 
 class HerosService {
     async search(query: string) {
-
         if (!query || query.length < 3)
-            throw new Error("400")
+            throw new Exeption("Search must contain more than 3 characters", 400)
 
         const heros = superhero.cache
             .filter(value => {
@@ -13,19 +13,19 @@ class HerosService {
             })
 
         if (heros.length === 0)
-            throw new Error("400")
+            throw new Exeption("No heros found", 204)
 
         return heros
     }
 
     async slug(slug: string) {
         if (!slug)
-            throw new Error('204')
+            throw new Exeption('Slug not empty', 204)
 
         const hero = superhero.cache.find(value => value.slug === slug)
 
         if (!hero)
-            throw new Error('404')
+            throw new Exeption('Hero not found', 404)
 
         return hero
     }
