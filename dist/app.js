@@ -14,4 +14,10 @@ app.use(async (req, res, next) => {
 });
 app.get('/search', Hero_1.default.search);
 app.get('/hero/:slug', Hero_1.default.slug);
+app.get('/', (req, res, next) => res.status(200).send());
+app.use((err, req, res, next) => {
+    return res
+        .status(err.code || 500)
+        .send(err.message || "Server Error");
+});
 exports.default = app;

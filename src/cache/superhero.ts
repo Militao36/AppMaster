@@ -14,7 +14,8 @@ class SuperHero {
 
         const response = await api.get("/all.json")
         for await (const item of response.data) {
-            const dataCSV = Object.values(item)
+            // cri
+            const herosStringLong = Object.values(item)
                 .filter(value => typeof (value) !== 'string')
                 .map(value => Object.values(value))
                 .flat()
@@ -22,11 +23,9 @@ class SuperHero {
                 
             this.cache.push({
                 ...item,
-                dataCSV
+                herosStringLong
             })
         }
-        console.log(this.cache[0].dataCSV)
-        console.log(this.cache[1].dataCSV)
     }
 }
 

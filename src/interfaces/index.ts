@@ -53,7 +53,7 @@ interface ISuperHero {
     work: Work;
     connections: Connections;
     images: Images;
-    dataCSV: string
+    herosStringLong: string
 }
 
 export { ISuperHero }

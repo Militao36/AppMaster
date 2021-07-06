@@ -9,14 +9,14 @@ class HerosService {
 
         const heros = superhero.cache
             .filter(value => {
-                return new RegExp(escapeRegExp(query as string), 'gi').test(value.dataCSV)
+                return new RegExp(escapeRegExp(query as string), 'gi').test(value.herosStringLong)
             })
 
         if (heros.length === 0)
             throw new Exeption("No heros found", 204)
 
         return heros.map(hero => {
-            Reflect.deleteProperty(hero, 'dataCSV')
+            Reflect.deleteProperty(hero, 'herosStringLong')
             return hero
         })
     }
@@ -30,7 +30,7 @@ class HerosService {
         if (!hero)
             throw new Exeption('Hero not found', 404)
 
-        Reflect.deleteProperty(hero, 'dataCSV')
+        Reflect.deleteProperty(hero, 'herosStringLong')
         return hero
     }
 }

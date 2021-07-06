@@ -6,14 +6,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const heros_1 = __importDefault(require("../services/heros"));
 class HeroController {
     async search(req, res, next) {
-        const { q } = req.query;
-        const data = await heros_1.default.search(q);
-        return res.status(200).json(data);
+        try {
+            const { q } = req.query;
+            const data = await heros_1.default.search(q);
+            return res.status(200).json(data);
+        }
+        catch (error) {
+            next(error);
+        }
     }
     async slug(req, res, next) {
-        const { slug } = req.params;
-        const data = await heros_1.default.slug(slug);
-        return res.status(200).json(data);
+        try {
+            const { slug } = req.params;
+            const data = await heros_1.default.slug(slug);
+            return res.status(200).json(data);
+        }
+        catch (error) {
+            next(error);
+        }
     }
 }
 exports.default = new HeroController();

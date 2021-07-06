@@ -11,13 +11,14 @@ class SuperHero {
             return;
         const response = await api_1.api.get("/all.json");
         for await (const item of response.data) {
-            const dataCSV = Object.values(item)
+            const herosStringLong = Object.values(item)
                 .filter(value => typeof (value) !== 'string')
                 .map(value => Object.values(value))
-                .flat();
+                .flat()
+                .join(" ");
             this.cache.push({
                 ...item,
-                dataCSV
+                herosStringLong
             });
         }
     }
