@@ -16,6 +16,8 @@ app.get('/search', Heros.search)
 
 app.get('/hero/:slug', Heros.slug)
 
+app.get('/', (req, res, next) => res.status(200).send())
+
 app.use((err: Exeption | any, req: Request, res: Response, next: NextFunction) => {
   return res
     .status(err.code || 500)
