@@ -15,7 +15,10 @@ class HerosService {
         if (heros.length === 0)
             throw new Exeption("No heros found", 204)
 
-        return heros
+        return heros.map(hero => {
+            Reflect.deleteProperty(hero, 'dataCSV')
+            return hero
+        })
     }
 
     async slug(slug: string) {
@@ -27,6 +30,7 @@ class HerosService {
         if (!hero)
             throw new Exeption('Hero not found', 404)
 
+        Reflect.deleteProperty(hero, 'dataCSV')
         return hero
     }
 }
