@@ -22,20 +22,20 @@ class SuperHero {
 
             // crio uma string gigante contendo os dados de todos campos sem as keys
             // para depois disso pesquisar dentro da string
-            const herosStringLong = Object.values(item)
+            const herosStringLong = aux + Object.values(item)
                 .filter(value => typeof (value) !== 'string')
                 .map(value => Object.values(value))
                 .flat()
-                .join(" ") + aux
+                .join(" ")
 
-
-
-
+                
             this.cache.push({
                 ...item,
                 herosStringLong
             })
         }
+
+        console.log(this.cache[0])
     }
 }
 
