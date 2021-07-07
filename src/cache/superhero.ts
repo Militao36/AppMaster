@@ -14,14 +14,23 @@ class SuperHero {
 
         const response = await api.get("/all.json")
         for await (const item of response.data) {
+
+            // para pegar name e slug
+            const aux = Object.values(item)
+                .filter(value => typeof (value) === 'string' || typeof (value) === 'number')
+                .join(" ")
+
             // crio uma string gigante contendo os dados de todos campos sem as keys
             // para depois disso pesquisar dentro da string
             const herosStringLong = Object.values(item)
                 .filter(value => typeof (value) !== 'string')
                 .map(value => Object.values(value))
                 .flat()
-                .join(" ")
-                
+                .join(" ") + aux
+
+
+
+
             this.cache.push({
                 ...item,
                 herosStringLong
